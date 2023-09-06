@@ -1,24 +1,24 @@
-import random
+from random import randint
 
 # Ask to play against computer or real player
-while 1:
+gamemode = True
+while gamemode:
     play_with_comp = input("Voulez-vous jouer contre l'ordinateur (Max 5 parties) O/N ? ").upper()
-    if play_with_comp != 'O' and play_with_comp != 'N':
-        print("Je n'ai pas compris votre réponse")
+    if play_with_comp == 'O' or play_with_comp == 'N':
+        gamemode = False
     else:
-        break
+        print("Je n'ai pas compris votre réponse")
 
-# Ask name of each player
-if play_with_comp == 'O':
-    player2 = 'Machine'
-    player1 = input("Quel est votre nom ? ")
-    print("Bienvenu ", player1, " nous allons jouer ensemble \n")
-else:
-    player1 = input("Quel est le nom du premier joueur ? ")
-    print("Bienvenu ", player1, " nous allons jouer ensemble")
+
+# Ask name of player 1
+player1 = input("Quel est votre nom ? ")
+print("Bienvenu ", player1, " nous allons jouer ensemble \n")
+player2 = 'Machine'
+
+# Ask name of player 2
+if play_with_comp == 'N':
     player2 = input("Quel est le nom du deuxième joueur ? ")
     print("Bienvenu ", player2, " nous allons jouer ensemble \n")
-
 
 is_playing = True
 no_round = 0
@@ -38,7 +38,7 @@ while is_playing:
 
     # Validate player2 move
     if play_with_comp == 'O':
-        move_player2 = ['pierre', 'papier', 'ciseaux'][random.randint(0, 2)]
+        move_player2 = ['pierre', 'papier', 'ciseaux'][randint(0, 2)]
     else:
         valid_move = False
         while valid_move == False:
@@ -55,35 +55,18 @@ while is_playing:
         print("le gagnant est aucun de vous, vous etes a ex æquo")
         print(f"Les scores à l'issue de cette manche sont donc {player1}({score_player1}) et {player2}({score_player2}) \n")
 
-    if move_player1 == 'pierre' and move_player2 == 'papier':
-        score_player2 += 1
-        print("le gagnant est", player2)
-        print(f"Les scores à l'issue de cette manche sont donc {player1}({score_player1}) et {player2}({score_player2}) \n")
-
-    if move_player1 == 'pierre' and move_player2 == 'ciseaux':
+    winner = "";
+    if ((move_player1 == 'pierre' and move_player2 == 'ciseaux')
+        or (move_player1 == 'papier' and move_player2 == 'pierre')
+        or (move_player1 == 'ciseaux' and move_player2 == 'papier')):
         score_player1 += 1
-        print("le gagnant est", player1)
-        print(f"Les scores à l'issue de cette manche sont donc {player1}({score_player1}) et {player2}({score_player2}) \n")
-
-    if move_player1 == 'papier' and move_player2 == 'ciseaux':
+        winner = player1
+    else:
         score_player2 += 1
-        print("le gagnant est", player2)
-        print(f"Les scores à l'issue de cette manche sont donc {player1}({score_player1}) et {player2}({score_player2}) \n")
+        winner = player2
 
-    if move_player1 == 'papier' and move_player2 == 'pierre':
-        score_player1 += 1
-        print("le gagnant est", player1)
-        print(f"Les scores à l'issue de cette manche sont donc {player1}({score_player1}) et {player2}({score_player2}) \n")
-
-    if move_player1 == 'ciseaux' and move_player2 == 'pierre':
-        score_player2 += 1
-        print("le gagnant est", player2)
-        print(f"Les scores à l'issue de cette manche sont donc {player1}({score_player1}) et {player2}({score_player2}) \n")
-
-    if move_player1 == 'ciseaux' and move_player2 == 'papier':
-        score_player1 += 1
-        print("le gagnant est", player1)
-        print(f"Les scores à l'issue de cette manche sont donc {player1}({score_player1}) et {player2}({score_player2}) \n")
+    print("le gagnant est", winner)
+    print(f"Les scores à l'issue de cette manche sont donc {player1}({score_player1}) et {player2}({score_player2}) \n")
 
     # Five round played, the game is over
     if no_round == 5:
