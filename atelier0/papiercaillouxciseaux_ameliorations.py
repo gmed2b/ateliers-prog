@@ -21,12 +21,12 @@ else:
 
 
 is_playing = True
-round = 0
+no_round = 0
 score_player1 = 0
 score_player2 = 0
 
 while is_playing:
-    round += 1
+    no_round += 1
 
     # Validate player1 move
     valid_move = False
@@ -86,7 +86,7 @@ while is_playing:
         print(f"Les scores à l'issue de cette manche sont donc {player1}({score_player1}) et {player2}({score_player2}) \n")
 
     # Five round played, the game is over
-    if round == 5:
+    if no_round == 5:
         is_playing = False
     else:
         # On propose de continuer ou de s'arrêter
