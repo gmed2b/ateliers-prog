@@ -1,7 +1,15 @@
 # Ce programme permet de calculer le tarif d'affranchissement
 # d'une lettre en fonction de son poids et de son type d'envoi
 
-# structure de donnée + lettre + typage
+### FUNCTIONS
+def get_affranchissement(poids_lettre: int, type_lettre: str) -> float:
+    """Renvoie le tarif d'affranchissement d'une lettre en fonction de son poids et de son type d'envoi"""
+    for poids, tarif in AFFRANCHISSEMENT[type_lettre].items():
+        if poids_lettre <= int(poids):
+            return tarif
+    return 0
+
+### CONSTANTS
 AFFRANCHISSEMENT = {
     # Lettre verte
     'V': {
@@ -28,16 +36,14 @@ AFFRANCHISSEMENT = {
     }
 }
 
+### MAIN
 
-def get_affranchissement(poids_lettre: int, type_lettre: str) -> float:
-    """Renvoie le tarif d'affranchissement d'une lettre en fonction de son poids et de son type d'envoi"""
-    for poids, tarif in AFFRANCHISSEMENT[type_lettre].items():
-        if poids_lettre <= int(poids):
-            return tarif
-    return 0
+try:
+    poids_lettre = int(input("Poids de la lettre en gramme (ex: 120) ? "))
+except ValueError:
+    print("Le poids de la lettre doit être un nombre entier")
+    exit()
 
-
-poids_lettre = int(input("Poids de la lettre en gramme (ex: 120) ? "))
 type_lettre = ""
 # On vérifie que le type d'envoi est valide
 while type_lettre not in AFFRANCHISSEMENT:
