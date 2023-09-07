@@ -11,12 +11,14 @@ IMC = [
     (30, "surpoids"),
     (35, "obésité modérée"),
     (40, "obésité sévère"),
-    (999, "obésité morbide")
+    (130, "obésité morbide")
 ]
 
 def message_imc(imc: float) -> str:
     """Affiche l'interprétation de l'IMC en
         fonction de sa valeur"""
+    if imc <= 0:
+        return "IMC invalide"
     for i in range(len(IMC)):
         if imc < IMC[i][0]:
             return IMC[i][1]
@@ -32,18 +34,16 @@ def message_imc(imc: float) -> str:
 #     return result
 
 
-def test(x: int) -> None:
+def test(imc: int) -> None:
     """Test l'execution de la fonction message_imc avec des valeurs différentes"""
-    for i in range(x):
-        imc = round(uniform(15, 45), 2)
-        msg = message_imc(imc)
-        print(f"IMC = {imc} -> {msg}")
+    msg = message_imc(imc)
+    print(f"IMC = {imc} -> {msg}")
 
 
 # get the start time
 st = time.time()
 
-test(14)
+test(-13)
 
 # get the end time
 et = time.time()
