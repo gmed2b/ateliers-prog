@@ -14,9 +14,13 @@ IMC = [
     (130, "obésité morbide")
 ]
 
+
 def message_imc(imc: float) -> str:
-    """Affiche l'interprétation de l'IMC en
-        fonction de sa valeur"""
+    '''Affiche l'interpretation de l'IMC d'une personne
+    en fonction de sa valeur.
+    :arg imc: (float) L'IMC d'une personne
+    :return (str) L'interpretation de l'IMC d'une personne
+   '''
     if imc <= 0:
         return "IMC invalide"
     for i in range(len(IMC)):
@@ -25,32 +29,16 @@ def message_imc(imc: float) -> str:
     return IMC[len(IMC) - 1][1]
 
 
-# def message_imc_while(imc: float) -> str:
-#     result = IMC[-1][1]
-#     i = 0
-#     while imc > IMC[i][0] and imc < IMC[i+1][0]:
-#         result = IMC[i][1]
-#         i += 1
-#     return result
-
-
 def test(x: int) -> None:
-    """Test l'execution de la fonction message_imc avec des valeurs différentes"""
+    '''Test l'execution de la fonction message_imc
+    avec des valeurs différentes.
+    :arg x: (int) Le nombre de test à effectuer
+    :return: None
+    '''
     for i in range(x):
         imc = round(uniform(15, 45), 2)
         msg = message_imc(imc)
         print(f"IMC = {imc} -> {msg}")
 
 
-# get the start time
-st = time.time()
-
 test(10)
-
-# get the end time
-et = time.time()
-
-# get the execution time
-res = et - st
-final_res = res * 1000
-print('Execution time:', round(final_res, 3), 'ms')
