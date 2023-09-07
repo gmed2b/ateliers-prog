@@ -34,16 +34,18 @@ def message_imc(imc: float) -> str:
 #     return result
 
 
-def test(imc: int) -> None:
+def test(x: int) -> None:
     """Test l'execution de la fonction message_imc avec des valeurs différentes"""
-    msg = message_imc(imc)
-    print(f"IMC = {imc} -> {msg}")
+    for i in range(x):
+        imc = round(uniform(15, 45), 2)
+        msg = message_imc(imc)
+        print(f"IMC = {imc} -> {msg}")
 
 
 # get the start time
 st = time.time()
 
-test(-13)
+test(10)
 
 # get the end time
 et = time.time()
