@@ -16,11 +16,11 @@ IMC = [
 
 
 def message_imc(imc: float) -> str:
-    '''Affiche l'interpretation de l'IMC d'une personne
+    """Affiche l'interpretation de l'IMC d'une personne
     en fonction de sa valeur.
     :arg imc: (float) L'IMC d'une personne
     :return (str) L'interpretation de l'IMC d'une personne
-   '''
+    """
     if imc <= 0:
         return "IMC invalide"
     for i in range(len(IMC)):
@@ -30,11 +30,11 @@ def message_imc(imc: float) -> str:
 
 
 def test(x: int) -> None:
-    '''Test l'execution de la fonction message_imc
+    """Test l'execution de la fonction message_imc
     avec des valeurs différentes.
     :arg x: (int) Le nombre de test à effectuer
     :return: None
-    '''
+    """
     for i in range(x):
         imc = round(uniform(15, 45), 2)
         msg = message_imc(imc)
