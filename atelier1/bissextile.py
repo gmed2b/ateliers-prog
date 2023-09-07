@@ -1,6 +1,7 @@
 def est_bissextile(annee: int) -> bool:
-    """Renvoie un booléen si l'année est bissextile ou non
-
+    """Permet de savoir si une année est bissextile ou non
+    :arg annee: (int) l'année à tester
+    :return: (bool) True si l'année est bissextile, False sinon
     """
     result = False
     if (annee % 400 == 0) or (annee % 4 == 0 and annee % 100 != 0):
