@@ -36,7 +36,7 @@ def test(x: int) -> None:
     :return: None
     """
     for i in range(x):
-        imc = round(uniform(15, 45), 2)
+        imc = round(uniform(-10, 45), 2)
         msg = message_imc(imc)
         print(f"IMC = {imc} -> {msg}")
 
