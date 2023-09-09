@@ -59,10 +59,10 @@ def est_triee_while(lst: list) -> bool:
     """
     length = len(lst)
     result = True
-    i = 0
-    while lst[i] <= lst[i+1] and i < length:
+    i = 1
+    while i < length and lst[i-1] <= lst[i]:
         i += 1
-    return result if i == length-1 else False
+    return result if i == length else False
 
 
 def dichotomie(lst: list, e: int, low: int, high: int) -> int:
@@ -96,3 +96,21 @@ def position_tri(lst: list, e: int) -> int:
     borne_sup = len(lst) - 1
     return dichotomie(lst, e, borne_inf, borne_sup)
 
+
+
+
+def test():
+    """Fonction de test"""
+    l = [2, 9, 3, 23, 5, 11, 18, 4, 13, 28, 1, 9]
+    print("Liste de test: ", l)
+    print("Position de 11: ", position_for(l, 11))
+    print("Position de 11: ", position_while(l, 11))
+    print("Nombre d'occurrences de 9: ", nb_occurrences(l, 9))
+    print("La liste est triée: ", est_triee_for(l))
+    print("La liste est triée: ", est_triee_while(l))
+    print("Liste triée: ", sorted(l))
+    print("Position de 13 par dichotomie: ", position_tri(sorted(l), 13))
+
+
+
+test()
