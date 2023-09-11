@@ -97,11 +97,27 @@ def position_tri(lst: list, e: int) -> int:
     return dichotomie(lst, e, borne_inf, borne_sup)
 
 
-
+def a_repetition(lst: list) -> bool:
+    """Retourne un booléen si la liste lst contient des éléments répétés
+    :arg lst: (list) liste d'entiers
+    :return: (bool) True si la liste contient des éléments répétés,
+    False autrement
+    """
+    uniquelst = []
+    result = False
+    length = len(lst)
+    i = 0
+    while i < length and not result:
+        if lst[i] not in uniquelst:
+            uniquelst.append(lst[i])
+            i += 1
+        else:
+            result = True
+    return result
 
 def test():
     """Fonction de test"""
-    l = [2, 9, 3, 23, 5, 11, 18, 4, 13, 28, 1, 9]
+    l = [2, 9, 3, 23, 5, 11, 18, 4, 13, 28, 1]
     print("Liste de test: ", l)
     print("Position de 11: ", position_for(l, 11))
     print("Position de 11: ", position_while(l, 11))
@@ -110,6 +126,7 @@ def test():
     print("La liste est triée: ", est_triee_while(l))
     print("Liste triée: ", sorted(l))
     print("Position de 13 par dichotomie: ", position_tri(sorted(l), 13))
+    print("La liste contient des éléments répétés: ", a_repetition(l))
 
 
 
