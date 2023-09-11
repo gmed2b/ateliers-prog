@@ -1,4 +1,8 @@
 def separer(lst: list) -> list:
+    """Retourne une liste séparée en trois parties: négatifs, nuls et positifs
+    :arg lst: (list) liste d'entiers
+    :return: (list) liste séparée
+    """
     lsep = []
     idx_inf = 0
     for num in lst:
@@ -14,7 +18,7 @@ def separer(lst: list) -> list:
 
 # TEST
 
-l = [-3, 5, -2, 3, 0, -1, 0, 4, -9, 6, 0]
+liste = [-3, 5, -2, 3, 0, -1, 0, 4, -9, 6, 0]
 
-print("Liste initiale:", l)
-print("Liste séparée:", separer(l))
+print("Liste initiale:", liste)
+print("Liste séparée:", separer(liste))
