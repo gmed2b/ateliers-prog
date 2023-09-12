@@ -24,3 +24,9 @@ def vitrines(nb_max: int, objets: list) -> (list, list):
 
 
 def test():
+    L = [1, 2, 2, 3, 4, 5, 5]
+    emplacement = 4
+    print(vitrines(emplacement, L))
+
+
+test()
