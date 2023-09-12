@@ -7,7 +7,7 @@ def vitrines(nb_max: int, objets: list) -> (list, list):
     """
     len_objets = len(objets)
     if nb_max <= len_objets // 2:
-        raise ValueError("Le nombre d'objets est trop grand pour le nombre d'emplacements")
+        raise ValueError("STOOOOPP! Le nombre d'objets est trop grand pour le nombre d'emplacements")
 
     vitrine1 = []
     nb_vitrine1 = 0
