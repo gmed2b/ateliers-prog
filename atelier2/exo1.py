@@ -115,12 +115,14 @@ def ind_max(l: list) -> int:
     :arg l: (list) liste d'entiers
     :return: (int) indice de la valeur max
     """
-    idx = None
-    max = l[0]
-    for i in range(len(l)):
-        if l[i] > max:
-            max = l[i]
-            idx = i
+    idx = -1
+    len_L = len(l)
+    if len_L != 0:
+        max = l[0]
+        for i in range(len_L):
+            if l[i] > max:
+                max = l[i]
+                idx = i
     return idx
 
 

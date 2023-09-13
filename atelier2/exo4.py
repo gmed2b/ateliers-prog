@@ -7,9 +7,12 @@ def histo(F: list) -> list:
     :arg F: (list) une liste d'entiers
     :return: (list) une liste d'entiers
     """
-    H = [0] * (max(F) + 1)
-    for i in range(len(F)):
-        H[F[i]] += 1
+    H = []
+    len_F = len(F)
+    if len_F > 0:
+        H = [0] * (max(F) + 1)
+        for i in range(len_F):
+            H[F[i]] += 1
     return H
 
 
@@ -66,13 +69,16 @@ def affiche_histo(F: list) -> None:
     """
     H = histo(F)
     length_H = len(H)
-    MAXOCC = max(H)
 
     print("TEST HISTOGRAMME")
     print(f"F = {F}")
     print(f"H = {H}")
     print("\nHISTOGRAMME\n")
 
+    if len(H) == 0:
+        return None
+
+    MAXOCC = max(H)
     row = MAXOCC
     # Affiche l'histogramme
     while row > -2:
@@ -104,13 +110,13 @@ def affiche_histo_plot(F: list) -> None:
 
 
 def test():
-    F = [6, 5, 6, 8, 4, 2, 1, 5]
+    F = []
     affiche_histo(F)
     print("")
     print(f"est_injective(F) = {est_injective(F)}")
     print(f"est_surjective(F) = {est_surjective(F)}")
     print(f"est_bijective(F) = {est_bijective(F)}")
-    affiche_histo_plot(F)
+    # affiche_histo_plot(F)
 
 
 test()
