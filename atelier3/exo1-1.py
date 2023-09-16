@@ -1,58 +1,57 @@
-BORNE_1_MAJ = 65
-BORNE_2_MAJ = 90
-BORNE_1_MIN = 97
-BORNE_2_MIN = 122
+BORNE_A_MAJ = 65
+BORNE_Z_MAJ = 90
+BORNE_A_MIN = 97
+BORNE_Z_MIN = 122
 
 
 def to_upper(ascii_caractere: int) -> str:
-    return chr(ascii_caractere - 32)
+    return chr(ascii_caractere - 32) if ascii_caractere - 32 >= 0 else chr(ascii_caractere)
 
 
 def to_lower(ascii_caractere: int) -> str:
-    return chr(ascii_caractere + 32)
+    return chr(ascii_caractere + 32) if ascii_caractere + 32 <= 0x10ffff else chr(ascii_caractere)
 
 
 def is_maj(c: int) -> bool:
-    return BORNE_1_MAJ <= c <= BORNE_2_MAJ
+    return BORNE_A_MAJ <= c <= BORNE_Z_MAJ
 
 
 def is_min(c: int) -> bool:
-    return BORNE_1_MIN <= c <= BORNE_2_MIN
+    return BORNE_A_MIN <= c <= BORNE_Z_MIN
 
 
 def full_name(str_arg: str) -> str:
     """
-    Returns the full name of a person
-    :arg str_arg: (str) the name of the person in format 'last_name first_name'
+    Retourne le nom et prenom d'une personne avec le nom en majuscule et le
+    prenom avec la première lettre seulement
+    :arg str_arg: (str) le nom d'une personne au format 'nom prenom'
     """
+    len_str = len(str_arg)
+    i = 0
     nom_majuscule = ""
-    est_nom = True
-    est_prenom = False
-    for caractere in str_arg:
-        ascii_caractere = ord(caractere)
-        if caractere == ' ':
-            est_nom = False
-            est_prenom = True
-            nom_majuscule += ' '
-        elif est_nom:
-            # CAS LETTRE MINUSCULE
-            if is_min(ascii_caractere):
-                # TRANSFORMER EN MAJUSCULE
-                nom_majuscule += to_upper(ascii_caractere)
-            else:
-                nom_majuscule += caractere
-        else:
-            if est_prenom:
-                if is_min(ascii_caractere):
-                    nom_majuscule += to_upper(ascii_caractere)
+    # On traite le nom tant qu'on croise pas l'espace
+    while i < len_str and str_arg[i] != ' ':
+        caractere = ord(str_arg[i])
+        nom_majuscule += to_upper(caractere) if is_min(caractere) else str_arg[i]
+        i += 1
+    # On a fini le nom, on considere le reste comme des prenoms
+    # Seulement s'il reste des caracteres a parcourir
+    if i < len_str:
+        # On ajoute l'espace entre le nom et prenom
+        first_letter = True
+        while i < len_str:
+            if str_arg[i] != ' ':
+                caractere = ord(str_arg[i])
+                if first_letter:
+                    nom_majuscule += to_upper(caractere) if is_min(caractere) else str_arg[i]
+                    first_letter = False
                 else:
-                    nom_majuscule += caractere
-                est_prenom = False
+                    nom_majuscule += to_lower(caractere) if is_maj(caractere) else str_arg[i]
             else:
-                if is_maj(ascii_caractere):
-                    nom_majuscule += to_lower(ascii_caractere)
-                else:
-                    nom_majuscule += caractere
+                nom_majuscule += ' '
+                first_letter = True
+            i += 1
+
     return nom_majuscule
 
 
