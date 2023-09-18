@@ -64,6 +64,12 @@ def liste_mots(lst: list, prefixe: str, suffixe: str, n: int):
     return mots_Nlettres(finissent_par(commencent_par(lst, prefixe), suffixe), n)
 
 
+def dictionnaire(file: str):
+    f = open(file, "r")
+    return f.readlines()
+
+# Tests
+
 def test_mots_Nlettres():
     assert mots_Nlettres(["chat", "chien", "oiseau", "cheval"], 5) == ["chien"]
     assert mots_Nlettres(["chat", "chien", "oiseau", "cheval"], 6) == ["oiseau", "cheval"]

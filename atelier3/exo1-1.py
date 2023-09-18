@@ -60,6 +60,7 @@ def test():
     print(full_name("agag"))
     print(full_name("fig eva"))
     print(full_name("Fig evA"))
+    print(full_name("sMenghI AntO pIerRE PhILIppE"))
     print(full_name("AEGAEG Aaegag"))
     print(full_name("Aeag AEGJEGIP"))
 
