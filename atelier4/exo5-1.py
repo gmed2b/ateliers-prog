@@ -62,10 +62,10 @@ def test(is_shuffle: bool = True):
     print("-- Debut du test --")
     print("Test en cours...")
 
-    lst = [ 5000, 7500, 10000, 15000, 20000, 50000, 75000, 100000]
+    lst = [5000, 10000, 20000, 50000]
     result = ([], [])
     if is_shuffle:
-        result = perf_mix(mix_list, random.shuffle, size_lst=lst, no_exec=100)
+        result = perf_mix(mix_list, random.shuffle, size_lst=lst, no_exec=20)
     else:
         result = perf_mix(extract_elements_list, random.sample, size_lst=lst, is_extract=True, no_exec=50)
 
@@ -89,5 +89,5 @@ def test(is_shuffle: bool = True):
     ])
 
 
-# test()
+test()
 test(False)

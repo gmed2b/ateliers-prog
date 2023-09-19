@@ -1,7 +1,8 @@
 import random
+from copy import deepcopy
 
 
-def mix_list(list_to_mix: list) -> list:
+def mix_list_v1(list_to_mix: list) -> list:
     """
     Retourne la liste list_to_mix mélangée.
     :param list_to_mix: (list) Liste à mélanger
@@ -19,9 +20,23 @@ def mix_list(list_to_mix: list) -> list:
     return new_list
 
 
+def mix_list(list_to_mix: list) -> list:
+    """
+    Retourne la liste list_to_mix mélangée.
+    :param list_to_mix: (list) Liste à mélanger
+    :return: (list) Liste mélangée
+    """
+    lst = deepcopy(list_to_mix)
+    len_lst = len(lst)
+    for i in range(len_lst):
+        random_idx = random.randint(0, len_lst - 1)
+        lst[i], lst[random_idx] = lst[random_idx], lst[i]
+    return lst
+
+
 def test():
     # Test de votre code
-    lst_sorted = [random.randint(1, 30) for i in range(10)]
+    lst_sorted = [i for i in range(1, 11)]
     print(lst_sorted)
     print('Liste triée de départ', lst_sorted)
     mixed_list = mix_list(lst_sorted)
@@ -31,4 +46,5 @@ def test():
     # est vérifiée en mode debug (désactivable)
     assert lst_sorted != mixed_list, "Les deux listes doivent être différente après l'appel à mixList..."
 
-# test()
+
+test()
