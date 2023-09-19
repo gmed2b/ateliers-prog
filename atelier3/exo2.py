@@ -20,7 +20,7 @@ def commence_par(mot: str, prefixe: str) -> bool:
     else:
         i = 0
         while i < len_prefix and result:
-            if mot[i] != prefixe[i]:
+            if mot[i].lower() != prefixe[i].lower():
                 result = False
             i += 1
     return result
