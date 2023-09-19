@@ -19,4 +19,4 @@ def test():
     print(gen_list_random_int(num=3, sup=30))
 
 
-test()
+# test()

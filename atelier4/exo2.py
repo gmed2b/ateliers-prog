@@ -47,4 +47,4 @@ def test():
     assert lst_sorted != mixed_list, "Les deux listes doivent être différente après l'appel à mixList..."
 
 
-test()
+# test()
