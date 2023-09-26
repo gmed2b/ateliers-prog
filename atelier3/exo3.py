@@ -37,6 +37,13 @@ HANGMANPICS = ['''
   |   |
   O   |
  /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
  / \  |
       |
 =========''']
@@ -64,10 +71,14 @@ def output_str(mot: str, lpos: list) -> str:
 
 
 def run_game():
+    """
+    Fonction principale du jeu
+    :return: (None)
+    """
     random_mot = random.choice(LISTE_MOTS)
     error = 0
     lettre_trouves = []
-    while error < 5:
+    while error < 5 and len(lettre_trouves) < len(random_mot):
         print(output_str(random_mot, lettre_trouves))
         lettre = input("Tirer une lettre: ")
         liste_pos = places_lettre(lettre, random_mot)
@@ -76,8 +87,14 @@ def run_game():
             print(HANGMANPICS[error])
             print(f"Il vous reste {5 - error} essais")
         else:
-            lettre_trouves += liste_pos
-    print("Vous avez perdu !")
+            if liste_pos not in lettre_trouves:
+                lettre_trouves += liste_pos
+
+    if error < 5:
+        print(f"Le mot est {output_str(random_mot, lettre_trouves)} !")
+        print("Vous avez gagné !")
+    else:
+        print("Vous avez perdu !")
 
 
 run_game()
