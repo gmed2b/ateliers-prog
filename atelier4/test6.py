@@ -3,6 +3,7 @@ import time
 from exo2 import mix_list
 from exo4 import extract_elements_list
 from exo5 import graph
+from exo6 import sort_list
 
 default_options = {
     "size_lst": [100, 500, 1000, 5000, 10000],
@@ -11,8 +12,7 @@ default_options = {
 }
 
 
-def perf_mix(perso: callable, native: callable, size_lst=None, no_exec: int = default_options["no_exec"],
-             is_extract: bool = False):
+def perf_mix(perso: callable, native: callable, size_lst=None, no_exec: int = default_options["no_exec"]):
     """
     Compare les performances de deux fonctions avec différentes tailles de données
     :param perso: (callable) fonction à tester
@@ -32,23 +32,18 @@ def perf_mix(perso: callable, native: callable, size_lst=None, no_exec: int = de
     current_index = 0
     for size in size_lst:
         lst = [i for i in range(size)]
+        random.shuffle(lst)
         avg_perso_num, avg_native_num = 0, 0
         for i_exec in range(no_exec):
             # Temps execution pour la fonction perso
             start_pc = time.perf_counter()
-            if is_extract:
-                perso(lst, lst[-1] // 2)
-            else:
-                perso(lst)
+            perso(lst)
             end_pc = time.perf_counter()
             avg_perso_num += end_pc - start_pc
 
             # Temps execution pour la fonction native
             start_pc = time.perf_counter()
-            if is_extract:
-                native(lst, lst[-1] // 2)
-            else:
-                native(lst)
+            native(lst)
             end_pc = time.perf_counter()
             avg_native_num += end_pc - start_pc
 
@@ -59,16 +54,12 @@ def perf_mix(perso: callable, native: callable, size_lst=None, no_exec: int = de
     return avg_perso, avg_native
 
 
-def test(is_shuffle: bool = True, graph_title="Test"):
+def test():
     print("-- Debut du test --")
     print("Test en cours...")
 
-    lst = [5000, 10000, 20000, 50000]
-    result = ([], [])
-    if is_shuffle:
-        result = perf_mix(mix_list, random.shuffle, size_lst=lst, no_exec=20)
-    else:
-        result = perf_mix(extract_elements_list, random.sample, size_lst=lst, is_extract=True, no_exec=50)
+    lst = [10000, 20000]
+    result = perf_mix(sort_list, sorted, size_lst=lst, no_exec=10)
 
     print("-- Fin du test --")
     print("Resultat du test :")
@@ -79,7 +70,7 @@ def test(is_shuffle: bool = True, graph_title="Test"):
             "size_lst": lst,
             "avg_lst": result[0],
             "label": "Perso",
-            "color": 'bo-',
+            "color": 'bo-'
         },
         {
             "size_lst": lst,
@@ -87,8 +78,7 @@ def test(is_shuffle: bool = True, graph_title="Test"):
             "label": "Native",
             "color": 'ro-'
         }
-    ], title=graph_title)
+    ])
 
 
-# test(graph_title="Fonction shuffle")
-# test(False, graph_title="Fonction sample")
+test()
