@@ -1,5 +1,7 @@
 import random
 
+NO_MAX_ERROR = 5
+
 LISTE_MOTS = ['python', 'java', 'c++', 'javascript',
               'php', 'ruby', 'perl', 'c#', 'go', 'swift',
               'r', 'matlab', 'sql']
@@ -77,21 +79,21 @@ def run_game():
     """
     random_mot = random.choice(LISTE_MOTS)
     error = 0
-    lettre_trouves = []
-    while error < 5 and len(lettre_trouves) < len(random_mot):
-        print(output_str(random_mot, lettre_trouves))
+    indices_lettre_trouves = []
+    while error < NO_MAX_ERROR and len(indices_lettre_trouves) < len(random_mot):
+        print(output_str(random_mot, indices_lettre_trouves))
         lettre = input("Tirer une lettre: ")
         liste_pos = places_lettre(lettre, random_mot)
         if not liste_pos:
             error += 1
             print(HANGMANPICS[error])
-            print(f"Il vous reste {5 - error} essais")
+            print(f"Il vous reste {NO_MAX_ERROR - error} essais")
         else:
-            if liste_pos not in lettre_trouves:
-                lettre_trouves += liste_pos
+            if liste_pos not in indices_lettre_trouves:
+                indices_lettre_trouves += liste_pos
 
-    if error < 5:
-        print(f"Le mot est {output_str(random_mot, lettre_trouves)} !")
+    if error < NO_MAX_ERROR:
+        print(f"Le mot est {output_str(random_mot, indices_lettre_trouves)} !")
         print("Vous avez gagné !")
     else:
         print("Vous avez perdu !")
