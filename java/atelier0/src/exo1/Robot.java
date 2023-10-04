@@ -1,24 +1,6 @@
-public class Main {
-    public static void main(String[] args) {
-        // write some test with 2 robots
-        Robot r1 = new Robot("R2D2");
-        Robot r2 = new Robot("C3PO", 2, 3, Robot.SUD);
-        r1.afficheToi();
-        r2.afficheToi();
-        r1.deplacer();
-        r2.deplacer();
-        r1.afficheToi();
-        r2.afficheToi();
-        r1.setOrientation(Robot.EST);
-        r2.setOrientation(Robot.OUEST);
-        r1.deplacer();
-        r2.deplacer();
-        System.out.println(r1);
-        System.out.println(r2);
-    }
-}
+package exo1;
 
-class Robot {
+public class Robot {
     public final static int NORD = 1;
     public final static int EST = 2;
     public final static int SUD = 3;
@@ -35,12 +17,20 @@ class Robot {
         this.name = name;
         this.x = x;
         this.y = y;
-        this.orientation = orientation;
+        this.setOrientation(orientation);
         nbRobot++;
     }
 
     public Robot(String name) {
         this(name, 0, 0, NORD);
+    }
+
+    public String toString() {
+        return "Je suis " + this.reference + " alias " + this.name + ". Je me situe en (" + this.x + ", " + this.y + ") " + this.printOrientation(this.orientation);
+    }
+
+    public void afficheToi() {
+        System.out.println("Je suis " + this.reference + " alias " + this.name + ". Je me situe en (" + this.x + ", " + this.y + ") " + this.printOrientation(this.orientation));
     }
 
     public void setOrientation(int orientation) {
@@ -74,13 +64,5 @@ class Robot {
                 this.x = 0;
             }
         }
-    }
-
-    public void afficheToi() {
-        System.out.println("Je suis " + this.reference + " alias " + this.name + ". Je me situe en (" + this.x + ", " + this.y + ") " + this.printOrientation(this.orientation));
-    }
-
-    public String toString() {
-        return "Je suis " + this.reference + " alias " + this.name + ". Je me situe en (" + this.x + ", " + this.y + ") " + this.printOrientation(this.orientation);
     }
 }

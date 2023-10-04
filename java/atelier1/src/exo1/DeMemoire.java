@@ -1,3 +1,5 @@
+package exo1;
+
 public class DeMemoire extends De {
     private int dernierLancer;
 
@@ -36,6 +38,11 @@ public class DeMemoire extends De {
         super();
     }
 
+    /**
+     * Rolls the dice while the result is the same as the last one and returns the result.
+     *
+     * @return a random number between 1 and the number of faces on this dice
+     */
     int lancer() {
         int lancer;
         do {

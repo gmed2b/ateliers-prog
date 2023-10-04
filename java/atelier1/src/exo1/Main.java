@@ -1,4 +1,4 @@
-import java.util.Random;
+package exo1;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,13 +15,15 @@ public class Main {
         System.out.println(d4);
         System.out.println(d5);
 
-        for (int i = 0; i < 10; i++) {
         System.out.println("Lancer de d1 : " + d1.lancer());
-            System.out.println("Lancer de d2 : " + d2.lancer(10));
-            System.out.println("Lancer de d3 : " + d3.lancer());
-            System.out.println("Lancer de d4 : " + d4.lancer());
-            System.out.println("Lancer de d5 : " + d5.lancer());
+        System.out.println("Lancer de d2 : " + d2.lancer(10));
+        System.out.println("Lancer de d3 : " + d3.lancer());
+        System.out.println("Lancer de d4 (<= 6) : " + d4.lancer());
+        System.out.print("Lancer de d5 : ");
+        for (int i = 0; i < 10; i++) {
+            System.out.print(d5.lancer() + ", ");
         }
+        System.out.println();
 
         System.out.println("d1 == d2 : " + d1.equals(d2));
         System.out.println("d2 == d3 : " + d2.equals(d3));
@@ -29,4 +31,3 @@ public class Main {
         System.out.println("d1 == d5 : " + d1.equals(d5));
     }
 }
-

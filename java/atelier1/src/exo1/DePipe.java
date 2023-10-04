@@ -1,3 +1,5 @@
+package exo1;
+
 public class DePipe extends De {
     private int borneMin;
 
@@ -26,3 +28,4 @@ public class DePipe extends De {
         return lancer;
     }
 }
+
